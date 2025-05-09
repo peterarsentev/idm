@@ -1,3 +1,4 @@
+-- +goose Up
 CREATE TABLE dionea_role (
                              id SERIAL NOT NULL,
                              name TEXT NOT NULL,
@@ -15,3 +16,8 @@ CREATE TABLE dionea_user (
                              UNIQUE (role_id),
                              CONSTRAINT fk_role_id FOREIGN KEY (role_id) REFERENCES dionea_role(id)
 );
+
+-- +goose Down
+ALTER TABLE dionea_user DROP CONSTRAINT IF EXISTS fk_role_id;
+DROP TABLE IF EXISTS dionea_user;
+DROP TABLE IF EXISTS dionea_role;

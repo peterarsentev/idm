@@ -1,3 +1,4 @@
+-- +goose Up
 CREATE TABLE dionea_filter (
                                id SERIAL NOT NULL,
                                name VARCHAR(2000),
@@ -5,11 +6,11 @@ CREATE TABLE dionea_filter (
 );
 
 CREATE TABLE dionea_key (
-                                id SERIAL NOT NULL,
-                                name VARCHAR(2000),
-                                filter_id INT NOT NULL,
-                                PRIMARY KEY (id),
-                                CONSTRAINT fk_filter_id FOREIGN KEY (filter_id) REFERENCES dionea_filter(id)
+                            id SERIAL NOT NULL,
+                            name VARCHAR(2000),
+                            filter_id INT NOT NULL,
+                            PRIMARY KEY (id),
+                            CONSTRAINT fk_filter_id FOREIGN KEY (filter_id) REFERENCES dionea_filter(id)
 );
 
 CREATE TABLE dionea_key_value (
@@ -19,3 +20,8 @@ CREATE TABLE dionea_key_value (
                                   PRIMARY KEY (id),
                                   CONSTRAINT fk_key_id FOREIGN KEY (key_id) REFERENCES dionea_key(id)
 );
+
+-- +goose Down
+DROP TABLE IF EXISTS dionea_key_value;
+DROP TABLE IF EXISTS dionea_key;
+DROP TABLE IF EXISTS dionea_filter;
