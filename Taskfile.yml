@@ -1,13 +1,27 @@
 version: "3"
 tasks:
-  default:
-    deps:
-      - build
+  fmt:
+    cmds:
+      - go fmt ./...
+  vet:
+    cmds:
+      - go vet ./...
   build:
     cmds:
       - go build -o bin/app ./...
+    deps:
+      - fmt
+      - vet
   test:
     cmds:
-      - go test ./...
+      - go test ./inner/...
+    deps:
+      - build
+  it:
+    cmds:
+      - go test ./integration_tests/...
+    deps:
+      - build
+  default:
     deps:
       - build
