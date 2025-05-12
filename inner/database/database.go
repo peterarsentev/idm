@@ -24,7 +24,7 @@ func (e *DbError) Error() string {
 	return e.message
 }
 
-func NewConnect(path string) (*sqlx.DB, error) {
+func NewDb(path string) (*sqlx.DB, error) {
 	cfg, err := load(path)
 	if err != nil {
 		return nil, &ConfigError{message: fmt.Sprintf("failed to load config from %s", path)}

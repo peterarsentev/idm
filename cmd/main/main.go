@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	db, err := database.NewConnect(".env")
+	db, err := database.NewDb(".env")
 	if err != nil {
 		panic(err)
 	}
