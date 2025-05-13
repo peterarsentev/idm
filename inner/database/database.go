@@ -1,17 +1,39 @@
 package database
 
 import (
+	"fmt"
 	"github.com/jmoiron/sqlx"
 	"github.com/joho/godotenv"
+	_ "github.com/lib/pq"
 	"os"
 )
 
-func NewConnect() (*sqlx.DB, error) {
-	cfg, err := load()
+type ConfigError struct {
+	message string
+}
+
+func (e *ConfigError) Error() string {
+	return e.message
+}
+
+type DbError struct {
+	message string
+}
+
+func (e *DbError) Error() string {
+	return e.message
+}
+
+func NewConnect(path string) (*sqlx.DB, error) {
+	cfg, err := load(path)
 	if err != nil {
-		return nil, err
+		return nil, &ConfigError{message: fmt.Sprintf("failed to load config from %s", path)}
 	}
-	return sqlx.MustConnect(cfg.driverName, cfg.dsn), nil
+	cnn, err := sqlx.Connect(cfg.driverName, cfg.dsn)
+	if err != nil {
+		return nil, &DbError{message: fmt.Sprintf("failed to connect to %s", err.Error())}
+	}
+	return cnn, nil
 }
 
 type dbCfg struct {
@@ -19,8 +41,8 @@ type dbCfg struct {
 	dsn        string
 }
 
-func load() (dbCfg, error) {
-	err := godotenv.Load(".env")
+func load(path string) (dbCfg, error) {
+	err := godotenv.Load(path)
 	if err != nil {
 		return dbCfg{}, err
 	}

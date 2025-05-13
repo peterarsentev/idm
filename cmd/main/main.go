@@ -2,13 +2,12 @@ package main
 
 import (
 	"fmt"
-	_ "github.com/lib/pq"
 	"idm/inner/database"
 	"log"
 )
 
 func main() {
-	db, err := database.NewConnect()
+	db, err := database.NewConnect(".env")
 	if err != nil {
 		panic(err)
 	}
