@@ -3,15 +3,15 @@ tasks:
   fmt:
     cmds:
       - go fmt ./...
-  vet:
+  lint:
     cmds:
-      - go vet ./...
+      - golangci-lint run
   build:
     cmds:
       - go build -o bin/app ./...
     deps:
       - fmt
-      - vet
+      - lint
   test:
     cmds:
       - go test ./inner/...
