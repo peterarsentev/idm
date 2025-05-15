@@ -88,6 +88,9 @@ func TestCreateKeyValue(t *testing.T) {
 		log.Fatal(err)
 	}
 	keyID, err := NewKeyRepository(repository.NewKeyRepository(db)).NewKey(filterID, "Kye")
+	if err != nil {
+		log.Fatal(err)
+	}
 	keyValue := models.KeyValue{
 		Value: "Test Value",
 		KeyID: keyID,
