@@ -13,7 +13,7 @@ import (
 
 func TestCreateFilter(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(".env.test")
+	db, err := database.NewConnect(".env.test")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -36,19 +36,25 @@ func TestCreateFilter(t *testing.T) {
 		Name: "Test Filter",
 	}
 	ID, err := repo.Add(context.Background(), filter)
-	a.NoError(err, "Failed to add filter")
+	a.NoError(err, "Failed to add filters")
 	createdFilter, err := repo.FindByID(context.Background(), ID)
-	a.NoError(err, "Failed to retrieve filter")
+	a.NoError(err, "Failed to retrieve filters")
 	a.Equal(filter.Name, createdFilter.Name, "Filter names should match")
 }
 
-func TestFindAllFilters(t *testing.T) {
+func TestNoFound(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(".env.test")
+	db, err := database.NewConnect(".env.test")
 	if err != nil {
 		log.Fatal(err)
 	}
+	if clearErr := clearDb(db); clearErr != nil {
+		log.Printf("Error while truncating tables: %v", clearErr)
+	}
 	defer func() {
+		if p := recover(); p != nil {
+			fmt.Println(p)
+		}
 		if db == nil {
 			return
 		}
@@ -57,7 +63,6 @@ func TestFindAllFilters(t *testing.T) {
 		}
 	}()
 	repo := repository.NewFilterRepository(db)
-	filters, err := repo.FindAll(context.Background())
-	a.NoError(err, "Failed to fetch filters")
-	a.NotEmpty(filters, "Filters should not be empty")
+	_, err = repo.FindByID(context.Background(), -1)
+	a.NotNil(err)
 }

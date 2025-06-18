@@ -12,7 +12,7 @@ import (
 
 func TestWhenNotFoundEnv(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(fmt.Sprintf(".env.%d", time.Nanosecond))
+	db, err := database.NewConnect(fmt.Sprintf(".env.%d", time.Nanosecond))
 	defer func() {
 		if db == nil {
 			return
@@ -30,7 +30,7 @@ func TestWhenNotFoundEnv(t *testing.T) {
 
 func TestWhenEmptyEnv(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(".empty")
+	db, err := database.NewConnect(".empty")
 	defer func() {
 		if db == nil {
 			return
@@ -46,7 +46,7 @@ func TestWhenEmptyEnv(t *testing.T) {
 
 func TestWhenConnectionOk(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(".env.ok")
+	db, err := database.NewConnect(".env.ok")
 	defer func() {
 		if db == nil {
 			return
