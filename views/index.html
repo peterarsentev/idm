@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dionea Bot</title>
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
+    
+    <!-- Summernote -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.10/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.10/dist/summernote-lite.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.10/dist/lang/summernote-ru-RU.min.js" defer></script>
+</head>
+<body>
+<div class="container-fluid p-0">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <div class="collapse navbar-collapse">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="/index">Главная</a>
+                    <a class="nav-item nav-link" href="/filters/">Стоп-фильтры</a>
+                    <a class="nav-item nav-link" href="/spams/view">База спама</a>
+                    <a class="nav-item nav-link" href="/login">Войти</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row pt-3">
+            <div class="cell">
+                <div class="alert alert-info" role="alert">
+                    <span class="fw-bold">@dionea_bot</span> - ваш универсальный помощник для Telegram групп:<br/>
+                    - <strong>Удаление спама</strong>: Автоматически удаляет спам-сообщения, поддерживая чистоту в чате.<br/>
+                    - <strong>Анализ изображений</strong>: Распознает и удаляет спам на изображениях.<br/>
+                    - <strong>Фильтрация контента</strong>: Обнаруживает и удаляет порнографические материалы.<br/>
+                    - <strong>Голосования</strong>: Поддерживает голосование за удаление сообщений или бан участников. Чтобы проголосовать, просто ответьте на сообщение с упоминанием бота @dionea_bot и вашим решением.<br/>
+                    - <strong>Настраиваемые фильтры</strong>: Позволяет создавать и настраивать свои фильтры через удобный веб-интерфейс.<br/>
+                    - <strong>Планировщик</strong>: Публикуйте сообщения по расписанию.<br/><br/>
+                    Количество чатов с @dionea_bot: <strong></strong>.
+                </div>
+            </div>
+        </div>
+        <div class="row pb-3">
+            <div class="cell">
+                <div class="card">
+                    <h5 class="card-header">Проверить сообщение на спам</h5>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="cell">
+                <div class="card">
+                    <h5 class="card-header">Отфильтровано за сегодня</h5>
+                    <div class="card-body">
+                        <table class="table">
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

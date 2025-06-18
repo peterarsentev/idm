@@ -14,7 +14,7 @@ import (
 
 func TestCreateKey(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(".env.test")
+	db, err := database.NewConnect(".env.test")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -50,7 +50,7 @@ func TestCreateKey(t *testing.T) {
 
 func TestFindAllKeys(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(".env.test")
+	db, err := database.NewConnect(".env.test")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -70,7 +70,7 @@ func TestFindAllKeys(t *testing.T) {
 
 func TestCreateKeyValue(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(".env.test")
+	db, err := database.NewConnect(".env.test")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -104,7 +104,7 @@ func TestCreateKeyValue(t *testing.T) {
 
 func TestFindAllKeyValues(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(".env.test")
+	db, err := database.NewConnect(".env.test")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -124,7 +124,7 @@ func TestFindAllKeyValues(t *testing.T) {
 
 func TestCreateSpam(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(".env.test")
+	db, err := database.NewConnect(".env.test")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -176,7 +176,7 @@ func TestCreateSpam(t *testing.T) {
 
 func TestFindAllSpams(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(".env.test")
+	db, err := database.NewConnect(".env.test")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -196,7 +196,7 @@ func TestFindAllSpams(t *testing.T) {
 
 func TestCreateVote(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(".env.test")
+	db, err := database.NewConnect(".env.test")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -241,7 +241,7 @@ func TestCreateVote(t *testing.T) {
 
 func TestFindAllVotes(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(".env.test")
+	db, err := database.NewConnect(".env.test")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -261,7 +261,7 @@ func TestFindAllVotes(t *testing.T) {
 
 func TestCreateRole(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(".env.test")
+	db, err := database.NewConnect(".env.test")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -286,7 +286,7 @@ func TestCreateRole(t *testing.T) {
 
 func TestFindAllRoles(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(".env.test")
+	db, err := database.NewConnect(".env.test")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -306,7 +306,7 @@ func TestFindAllRoles(t *testing.T) {
 
 func TestCreateUser(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(".env.test")
+	db, err := database.NewConnect(".env.test")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -339,7 +339,7 @@ func TestCreateUser(t *testing.T) {
 
 func TestFindAllUsers(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(".env.test")
+	db, err := database.NewConnect(".env.test")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -359,7 +359,7 @@ func TestFindAllUsers(t *testing.T) {
 
 func TestCreateContact(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(".env.test")
+	db, err := database.NewConnect(".env.test")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -388,7 +388,7 @@ func TestCreateContact(t *testing.T) {
 
 func TestFindAllContacts(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(".env.test")
+	db, err := database.NewConnect(".env.test")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -408,7 +408,7 @@ func TestFindAllContacts(t *testing.T) {
 
 func TestCreateChat(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(".env.test")
+	db, err := database.NewConnect(".env.test")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -433,7 +433,7 @@ func TestCreateChat(t *testing.T) {
 
 func TestFindAllChats(t *testing.T) {
 	a := assert.New(t)
-	db, err := database.NewDb(".env.test")
+	db, err := database.NewConnect(".env.test")
 	if err != nil {
 		log.Fatal(err)
 	}

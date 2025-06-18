@@ -38,3 +38,8 @@ func (r *KeyRepository) Add(ctx context.Context, k models.Key) (int64, error) {
 	}
 	return ID, err
 }
+
+func (r *KeyRepository) FindKeyByFilterID(filterID int64) (keys []models.Key, err error) {
+	err = r.db.Get(keys, "SELECT * FROM dionea_key WHERE filter_id=$1", filterID)
+	return
+}

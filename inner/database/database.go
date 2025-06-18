@@ -1,10 +1,12 @@
 package database
 
 import (
+	"database/sql"
 	"fmt"
 	"github.com/jmoiron/sqlx"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
+	"log"
 	"os"
 )
 
@@ -24,7 +26,7 @@ func (e *DbError) Error() string {
 	return e.message
 }
 
-func NewDb(path string) (*sqlx.DB, error) {
+func NewConnect(path string) (*sqlx.DB, error) {
 	cfg, err := load(path)
 	if err != nil {
 		return nil, &ConfigError{message: fmt.Sprintf("failed to load config from %s", path)}
@@ -50,4 +52,30 @@ func load(path string) (dbCfg, error) {
 		driverName: os.Getenv("DB_DRIVER_NAME"),
 		dsn:        os.Getenv("DB_DSN"),
 	}, nil
+}
+
+func tx(db *sqlx.DB, logic func(tx *sql.Tx) error) error {
+	tx, err := db.Begin()
+	if err != nil {
+		return err
+	}
+
+	var logicErr error
+	defer func() {
+		if logicErr != nil {
+			rbErr := tx.Rollback()
+			if rbErr != nil {
+				log.Printf("Error during rollback: %v", rbErr)
+			}
+		}
+	}()
+	logicErr = logic(tx)
+	if logicErr != nil {
+		return logicErr
+	}
+	logicErr = tx.Commit()
+	if logicErr != nil {
+		return logicErr
+	}
+	return nil
 }

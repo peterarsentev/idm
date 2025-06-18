@@ -19,9 +19,8 @@ func (r *FilterRepository) FindAll(ctx context.Context) (filters []models.Filter
 	return filters, err
 }
 
-func (r *FilterRepository) FindByID(ctx context.Context, ID int64) (filter *models.Filter, err error) {
-	filter = &models.Filter{}
-	err = r.db.GetContext(ctx, filter, "SELECT * FROM dionea_filter WHERE id=$1", ID)
+func (r *FilterRepository) FindByID(ctx context.Context, ID int64) (filter models.Filter, err error) {
+	err = r.db.GetContext(ctx, &filter, "SELECT * FROM dionea_filter WHERE id=$1", ID)
 	return filter, err
 }
 

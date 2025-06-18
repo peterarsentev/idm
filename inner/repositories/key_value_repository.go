@@ -38,3 +38,8 @@ func (r *KeyValueRepository) Add(ctx context.Context, kv models.KeyValue) (int64
 	}
 	return ID, err
 }
+
+func (r *KeyValueRepository) FindValueInKeys(IDS []int64) (values []models.KeyValue, err error) {
+	err = r.db.Select(values, "SELECT * FROM dionea_key_value WHERE key_id in $1", IDS)
+	return
+}
